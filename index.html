@@ -157,7 +157,7 @@
   .g-card h3 { font-size: 16px; font-weight: 600; margin-top: 6px; }
   .g-card p { font-size: 14px; margin-top: 6px; flex: 1; }
   .g-link { font-size: 13px; font-weight: 500; color: var(--accent); margin-top: 12px; }
-  .g-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .g-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
   .g-facts dt { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
   .g-facts dd { font-size: 14px; color: var(--ink); font-weight: 500; margin-top: 2px; }
 
@@ -434,6 +434,17 @@
   .led-ic { width: 22px; height: 22px; flex: none; background: #2EC866; -webkit-mask: url(img/logos/hackerrank.svg) center / contain no-repeat; mask: url(img/logos/hackerrank.svg) center / contain no-repeat; }
   .led-go { margin-left: auto; font-size: 16px; color: var(--muted); }
 
+  .skills { grid-template-columns: repeat(4, 1fr); }
+  .coursework { margin-top: 16px; font-size: 14px; color: var(--muted); }
+  .coursework b { color: var(--ink); font-weight: 600; }
+  .contact .list .c-dl { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); transition: background .15s, border-color .15s; }
+  .contact .list .c-dl:hover { background: color-mix(in srgb, var(--bg) 8%, transparent); border-color: color-mix(in srgb, var(--bg) 45%, transparent); }
+  .contact .list .c-dl span { font-size: 15px; font-weight: 500; }
+  .contact .list .c-dl em { display: block; font-style: normal; font-weight: 400; font-size: 13px; color: color-mix(in srgb, var(--bg) 60%, transparent); }
+  .contact .list .c-dl small { font-size: 18px; }
+  @media (max-width: 980px) { .skills { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 720px) { .skills { grid-template-columns: 1fr; } }
+
   /* polish */
   .btn.sq { width: 42px; padding: 0; }
   .btn.sq .i { width: 18px; height: 18px; }
@@ -612,6 +623,7 @@
       <p class="intro">I build things with LLMs, then test them hard enough to know if they actually work. B.Tech CSE (AI &amp; ML) at SRM in Chennai, graduating 2027.</p>
       <div class="cta">
         <button class="btn primary" data-compose="call">Email to schedule a call</button>
+        <a class="btn" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf">Download résumé</a>
         <a class="btn" href="#projects">View my work</a>
         <a class="btn sq" href="https://github.com/airasalish" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><span class="i" style="--m:url(img/logos/github.svg)"></span></a>
         <a class="btn sq" href="https://linkedin.com/in/airasalish" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><span class="i" style="--m:url(img/logos/linkedin.svg)"></span></a>
@@ -692,9 +704,10 @@
       <div><dt>Looking for</dt><dd>AI / ML engineering internships and new-grad roles</dd></div>
       <div><dt>Graduating</dt><dd>2027 · B.Tech CSE (AI &amp; ML)</dd></div>
       <div><dt>Based in</dt><dd>Chennai · from Kannur, Kerala</dd></div>
+      <div><dt>Eligibility</dt><dd>Indian citizen · single degree · no backlogs</dd></div>
     </dl>
     <div class="quick" role="group" aria-label="Quick actions">
-      <button class="btn sm" data-compose="resume">Request résumé</button>
+      <a class="btn sm primary" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf">Download résumé (PDF)</a>
       <button class="btn sm" data-compose="forward">Forward to your team</button>
       <button class="btn sm" data-vcard>Save contact</button>
       <button class="btn sm" data-share>Share portfolio</button>
@@ -731,13 +744,14 @@
         <div class="lg">S</div>
         <div>
           <div class="job-top">
-            <div><h3>Generative AI Researcher</h3><div class="co">The Spotted App <span>· BeSuperhuman.ai · Remote</span></div></div>
+            <div><h3>Generative AI Researcher</h3><div class="co">The Spotted App <span>· AI product team under Amit Baradia, BeSuperhuman.ai · Remote</span></div></div>
             <span class="pill">Dec 2025 – Feb 2026</span>
           </div>
           <ul>
             <li>Built the testing setup for a live LLM product: scoring prompts, graded test sets and a regression suite that ran on every release.</li>
             <li>Set the quality bar each release had to clear. <b>Wrong answers went down 35%.</b></li>
-            <li>Wrote up the ways the model kept failing, hallucinations included. The team adopted it as their playbook.</li>
+            <li>Wrote up the ways the model kept failing, hallucinations included. The team adopted it as their playbook, and I tracked each defect from reproduction to a verified fix.</li>
+            <li>Reported progress, findings and risks to the founders early, and fed their feedback into the next cycle.</li>
           </ul>
         </div>
       </article>
@@ -745,13 +759,13 @@
         <div class="lg"><img src="img/bb-logo.jpg" alt="BabyBillion logo"></div>
         <div>
           <div class="job-top">
-            <div><h3>Prompt Engineering &amp; Automation Intern</h3><div class="co">BabyBillion <span>· 1.5B+ monthly views · Bengaluru</span></div></div>
+            <div><h3>Prompt Engineering &amp; Automation Intern</h3><div class="co">BabyBillion <span>· under Dinesh Godra, ex-VP Unacademy · 1.5B+ monthly views · Bengaluru</span></div></div>
             <span class="pill">May – Sept 2025</span>
           </div>
           <ul>
             <li>Wrote prompts and AI video pipelines for the channel. <b>One short got 20 million views.</b></li>
             <li>Automated 50+ workflows in Python, which <b>cut about 40% of the team's repetitive work</b>.</li>
-            <li>Made the reporting SQL 30% faster and built dashboards the sales team could use without asking anyone.</li>
+            <li>Made the reporting SQL 30% faster and built dashboards the sales team could use without asking anyone. I also checked the data and flagged problems before they reached reports.</li>
           </ul>
           <div class="actions">
             <button class="btn sm" data-open="img/babybillion.jpg" data-cap="BabyBillion experience letter" data-pdf="docs/babybillion-experience-letter.pdf">View experience letter</button>
@@ -764,7 +778,7 @@
         <div class="lg acm"><span class="ic-acm"></span></div>
         <div>
           <div class="job-top">
-            <div><h3>Technical Lead</h3><div class="co">ACM-W <span>· SRM student chapter · Chennai</span></div></div>
+            <div><h3>Technical Lead, AI/ML</h3><div class="co">ACM-W SRMIST <span>· ACM's women in computing chapter at SRM, 120+ members · Chennai</span></div></div>
             <span class="pill">Jan 2023 – Present</span>
           </div>
           <ul>
@@ -790,7 +804,7 @@
           <h3>WARRANT</h3>
           <p>An AI agent that decides chargeback disputes, built for Razorpay's AI Buildathon. The risk checks run in plain Python, so every decision can be traced back. On unseen data, recall dropped from 92% to 71%. I put that number in the README instead of hiding it.</p>
           <div class="tags"><span class="tag p-det">Rules in code</span><span class="tag p-grd">Prompt-injection tested</span><span class="tag p-eval">Tested on unseen data</span></div>
-          <div class="foot"><span class="metric"><b>0</b> false positives or negatives on committed decisions</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/warrant-full.mp4?v=3" data-title="WARRANT, 5-minute pitch">▶ Pitch</button><a class="btn sm" href="https://github.com/airasalish/warrant---Razorpay-2026" target="_blank" rel="noopener">Code</a></span></div>
+          <div class="foot"><span class="metric"><b>0</b> false positives or negatives · <b>100%</b> defence rate under adversarial tests · 51 commits</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/warrant-full.mp4?v=3" data-title="WARRANT, 5-minute pitch">▶ Pitch</button><a class="btn sm" href="https://github.com/airasalish/warrant---Razorpay-2026" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
       <article class="proj" id="p-drift">
@@ -1029,11 +1043,16 @@
   <section class="block" id="skills">
     <div class="head"><div><span class="kicker">Skills</span><h2>Toolkit</h2></div></div>
     <div class="skills">
-      <div class="skill"><h3>LLMs &amp; agents</h3><div class="tags"><span class="tag">Prompt engineering</span><span class="tag">Structured outputs</span><span class="tag">Tool calling</span><span class="tag">Agent loops</span><span class="tag">RAG</span></div></div>
-      <div class="skill"><h3>Evaluation &amp; safety</h3><div class="tags"><span class="tag">Rubric test sets</span><span class="tag">Regression suites</span><span class="tag">Tested on unseen data</span><span class="tag">Precision / recall</span><span class="tag">Prompt injection</span></div></div>
-      <div class="skill"><h3>Engineering</h3><div class="tags"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">REST APIs</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Linux</span></div></div>
-      <div class="skill"><h3>Data &amp; BI</h3><div class="tags"><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">Dashboards</span></div></div>
+      <div class="skill"><h3>LLMs &amp; prompting</h3><div class="tags"><span class="tag">Few-shot</span><span class="tag">Chain-of-thought</span><span class="tag">Structured outputs</span><span class="tag">System prompts</span><span class="tag">Tokens &amp; context windows</span><span class="tag">Temperature / top-p</span></div></div>
+      <div class="skill"><h3>Agents &amp; tool use</h3><div class="tags"><span class="tag">Bounded agent loops</span><span class="tag">Tool calling</span><span class="tag">LLM APIs</span><span class="tag">Retrieval grounding</span><span class="tag">Rate-limit-aware batching</span><span class="tag">Resumable runs</span></div></div>
+      <div class="skill"><h3>Evaluation &amp; safety</h3><div class="tags"><span class="tag">Rubric test sets</span><span class="tag">Regression suites</span><span class="tag">Held-out evaluation</span><span class="tag">Precision / recall</span><span class="tag">Hallucination checks</span><span class="tag">Prompt injection</span></div></div>
+      <div class="skill"><h3>Software engineering</h3><div class="tags"><span class="tag">Python (OOP)</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">REST APIs</span><span class="tag">Git</span><span class="tag">Unit &amp; integration tests</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Linux</span></div></div>
+      <div class="skill"><h3>Data &amp; BI</h3><div class="tags"><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">Jupyter</span><span class="tag">Dashboards</span><span class="tag">Data validation</span></div></div>
+      <div class="skill"><h3>Deep learning &amp; ML</h3><div class="tags"><span class="tag">Transformers</span><span class="tag">Attention</span><span class="tag">Tokenization</span><span class="tag">Supervised learning</span><span class="tag">Model metrics</span><span class="tag">RAG vs fine-tuning</span></div></div>
+      <div class="skill"><h3>Delivery</h3><div class="tags"><span class="tag">Agile &amp; Waterfall</span><span class="tag">Requirement gathering</span><span class="tag">Prototyping</span><span class="tag">Test case writing</span><span class="tag">Technical docs</span><span class="tag">Stakeholder updates</span></div></div>
+      <div class="skill"><h3>Currently learning</h3><div class="tags"><span class="tag">Kubernetes</span><span class="tag">C programming</span></div></div>
     </div>
+    <p class="coursework"><b>Coursework:</b> Machine Learning, Data Science, Deep Learning, Data Structures &amp; Algorithms, Object-Oriented Programming, DBMS, Operating Systems, Software Engineering &amp; Project Management.</p>
   </section>
 
   <section class="contact" id="contact">
@@ -1050,7 +1069,7 @@
     </div>
     <div class="list">
       <button data-compose="call"><span>Schedule a call<em>Blanks for your company, role and times</em></span><small>→</small></button>
-      <button data-compose="resume"><span>Request my résumé<em>I'll reply with the latest version</em></span><small>→</small></button>
+      <a class="c-dl" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf"><span>Download my résumé<em>One-page PDF</em></span><small>↓</small></a>
       <button data-compose="forward"><span>Forward me to your team<em>A ready summary for your hiring manager</em></span><small>→</small></button>
       <button data-compose="hello"><span>Say hello<em>Questions or collaborations</em></span><small>→</small></button>
     </div>
@@ -1236,7 +1255,7 @@ const templates = {
       + `- GirlScript Summer of Code 2025 open-source contributor\n`
       + `- AWS Certified AI Practitioner with a perfect 1000/1000, and SAP certified\n`
       + `- B.Tech CSE (AI & ML) at SRM, graduating 2027. Based in Chennai.\n\n`
-      + `Portfolio: ${SITE}\nEmail: ${ME}\n\n${f.name || ''}\n`
+      + `Portfolio: ${SITE}\nRésumé: ${SITE}/docs/aira-salish-resume.pdf\nEmail: ${ME}\n\n${f.name || ''}\n`
   },
   hello: {
     title: 'Say hi to Aira', to: ME, fields: basic,
