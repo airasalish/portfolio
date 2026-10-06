@@ -756,6 +756,17 @@
 
   .r-badge { display: none !important; }
   .round.best .r-step::after { content: ' · Best finish'; color: var(--accent); }
+
+  /* photos always in full colour; only logos are grey until hovered */
+  .portrait > img, .portrait img, .gallery .shot-btn img, .gallery .shot-btn:hover img, .facts img, .what-img img, .proj .shot img { filter: none !important; }
+  .facts img { object-position: 30% 30%; }
+  .job .lg { filter: grayscale(1); opacity: .75; transition: filter .25s, opacity .25s; }
+  .job:hover .lg, .job .lg:hover { filter: none; opacity: 1; }
+  .cert .lg { transition: filter .25s; }
+  .cert .lg .logo { background: var(--muted) !important; transition: background .25s; }
+  .cert:hover .lg .logo { background: var(--brand) !important; }
+  .led-ic { transition: filter .25s, opacity .25s; }
+  .led:hover .led-ic { filter: none; opacity: 1; }
 </style>
 </head>
 <body>
@@ -897,7 +908,7 @@
         <p style="margin-top:14px">I keep the important logic in normal code and let the model handle the messy parts. Once I switched off a feature I had already shipped, because the tests showed it couldn't be trusted.</p>
       </div>
       <div class="facts">
-        <img src="img/aira-2.jpg" alt="Aira K. Salish" loading="lazy">
+        <img src="img/aira-2.jpg?v=2" alt="Aira K. Salish" loading="lazy">
         <dl>
           <div><dt>From</dt><dd>Kannur, Kerala</dd></div>
           <div><dt>Based in</dt><dd>Chennai</dd></div>
