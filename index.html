@@ -767,16 +767,66 @@
   .cert:hover .lg .logo { background: var(--brand) !important; }
   .led-ic { transition: filter .25s, opacity .25s; }
   .led:hover .led-ic { filter: none; opacity: 1; }
+
+  /* ===== short-attention layer ===== */
+  .progress { position: fixed; top: 0; left: 0; height: 2px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--accent); z-index: 100; }
+  .hero { padding: 72px 0 40px; }
+  .hero .role { font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; margin-top: 18px; }
+  .hero p.intro { margin-top: 10px; font-size: 16px; color: var(--muted); }
+  .skim { margin-top: 26px; font-family: var(--mono); font-size: 11.5px; color: var(--muted); animation: nudge 2.4s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateY(3px); } }
+  .receipts { padding-bottom: 8px; }
+  .stats a { display: block; padding: 22px 24px 22px 0; color: inherit; transition: background .2s; }
+  .stats a + a { border-left: 1px solid var(--line); padding-left: 24px; }
+  .stats a:hover b { color: var(--accent); }
+  .stats b { font-size: clamp(40px, 5vw, 60px); transition: color .2s; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .chips a { font-family: var(--mono); font-size: 12px; padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 2px; color: var(--ink); transition: border-color .2s, background .2s; }
+  .chips a:hover { border-color: var(--ink); }
+  .receipts .logos { border-bottom: 1px solid var(--line); }
+  .receipts .quick { margin-top: 18px; }
+  section.block { padding-top: 88px; }
+  .head { margin-bottom: 28px; }
+  .tldr { list-style: none; display: grid; gap: 0; align-self: start; }
+  .tldr li { padding: 16px 0; border-top: 1px solid var(--line); font-size: 18px; line-height: 1.45; color: var(--text); }
+  .tldr li:first-child { border-top: 1px solid var(--ink); }
+  .tldr b { color: var(--ink); font-weight: 600; margin-right: 6px; }
+  .job { padding: 20px 0; }
+  .job .one { margin-top: 8px; font-size: 16px; }
+  .job .one b { color: var(--ink); }
+  .job .actions { margin-top: 12px; }
+  .proj p { font-size: 15.5px; }
+  .head h2 { font-variant-numeric: tabular-nums; }
+  .round p { font-size: 15px; }
+  .round h3 { margin-top: 14px; }
+  .r-links { margin-top: 12px; }
+  .certs.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); }
+  .certs.tiles .cert { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px 20px 22px 0; border: 0; border-bottom: 1px solid var(--line); background: none; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+  .certs.tiles .cert:not(:nth-child(4n+1)) { padding-left: 20px; border-left: 1px solid var(--line); }
+  .certs.tiles div.cert { cursor: default; }
+  .certs.tiles .cert h3 { font-size: 18px; }
+  .certs.tiles .cert .sub { font-size: 13px; margin-top: 2px; }
+  .certs.tiles .cert:hover h3 { color: var(--accent); }
+  .certs.tiles .lg .gs { width: 30px; height: 30px; filter: grayscale(1) opacity(.7); transition: filter .25s; }
+  .certs.tiles .cert:hover .lg .gs { filter: none; }
+  .verify { margin-top: 14px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .verify a, a.inline { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-strong); }
+  .skill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-row span { font-family: var(--mono); font-size: 13px; padding: 7px 12px; border: 1px solid var(--line-strong); border-radius: 2px; color: var(--ink); }
+  @media (max-width: 980px) { .certs.tiles { grid-template-columns: repeat(2, 1fr); } .certs.tiles .cert:not(:nth-child(4n+1)) { padding-left: 0; border-left: 0; } .certs.tiles .cert:nth-child(2n) { padding-left: 16px; border-left: 1px solid var(--line); } }
+  @media (max-width: 760px) { .stats a + a { padding-left: 16px; } .stats a:nth-child(3) { border-left: 0; padding-left: 0; } .stats a:nth-child(n+3) { border-top: 1px solid var(--line); } .tldr li { font-size: 16.5px; } }
+  .receipts { counter-increment: sec; }
 </style>
 </head>
 <body>
 
+<div class="progress" id="progress" aria-hidden="true"></div>
 <header class="top" id="top">
   <div class="wrap">
     <a class="brand" href="#">Aira K. Salish</a>
     <ul class="menu" id="menu">
-      <li><a href="#abc">Summary</a></li>
-      <li><a href="#experience">Experience</a></li>
+      <li><a href="#abc">Highlights</a></li>
+      <li><a href="#experience">Work</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#orchestrate">Hackathons</a></li>
       <li><a href="#certifications">Credentials</a></li>
@@ -796,14 +846,14 @@
 </header>
 
 <nav class="rail" id="rail" aria-label="Sections">
-  <a href="#abc">Summary</a>
+  <a href="#abc">Highlights</a>
   <a href="#about">About</a>
-  <a href="#experience">Experience</a>
+  <a href="#experience">Work</a>
   <a href="#projects">Projects</a>
   <a href="#orchestrate">Hackathons</a>
   <a href="#certifications">Credentials</a>
-  <a href="#moments">Moments</a>
-  <a href="#beyond">Outside work</a>
+  <a href="#moments">Photos</a>
+  <a href="#beyond">Archery</a>
   <a href="#contact">Contact</a>
 </nav>
 
@@ -812,16 +862,14 @@
     <div>
       <p class="avail">Available for AI / ML internships and 2027 roles</p>
       <h1>Aira <em>K.</em> Salish</h1>
-      <p class="role">Final-year AI &amp; ML student · <em>LLMs, testing and data</em></p>
-      <p class="intro">I build things with LLMs, then test them hard enough to know if they actually work. B.Tech CSE (AI &amp; ML) at SRM in Chennai, graduating 2027.</p>
+      <p class="role">I build AI that's <em>right more often.</em></p>
+      <p class="intro">Final-year AI &amp; ML at SRM, Chennai. From Kannur, Kerala.</p>
       <div class="cta">
         <button class="btn primary" data-compose="call">Email to schedule a call</button>
         <a class="btn" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf">Download résumé</a>
         <span class="text-links"><a href="https://github.com/airasalish" target="_blank" rel="noopener">GitHub</a><a href="https://linkedin.com/in/airasalish" target="_blank" rel="noopener">LinkedIn</a></span>
       </div>
-      <div class="meta-line">
-        <span>From Kannur, Kerala</span><span>Based in Chennai</span><span>SRM IST, class of 2027</span>
-      </div>
+      <p class="skim">30-second skim below ↓</p>
     </div>
     <div class="portrait">
       <img src="img/aira.jpg?v=6" alt="Portrait of Aira K. Salish" width="800" height="1000">
@@ -829,93 +877,56 @@
     </div>
   </section>
 
-  <div class="stats" id="stats">
-    <div><b data-to="35" data-prefix="−" data-suffix="%">−35%</b><span>fewer wrong answers once my tests were in place</span></div>
-    <div><b data-to="27" data-prefix="#" data-from="1983">#27</b><span>out of 1,983 in HackerRank's August round</span></div>
-    <div><b data-to="40" data-suffix="%">40%</b><span>of the repetitive work at BabyBillion, automated</span></div>
-    <div><b data-to="20" data-suffix="M">20M</b><span>views on one AI short I worked on</span></div>
-  </div>
-
-  <div class="logos" aria-label="Organisations I've worked with, been certified or ranked by">
-    <span class="lbl">Certified by, ranked on, built for</span>
-    <span class="logo" style="--brand:#FF9900;--m:url(img/logos/amazonwebservices.svg)" title="AWS"></span>
-    <span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)" title="HackerRank"></span>
-    <span class="logo" style="--brand:#EE0000;--m:url(img/logos/redhat.svg)" title="Red Hat"></span>
-    <span class="word citi" title="Citi">citi</span>
-    <span class="logo" style="--brand:#0FAAFF;--m:url(img/logos/sap.svg)" title="SAP"></span>
-    <span class="logo" style="--brand:#3395FF;--m:url(img/logos/razorpay.svg)" title="Razorpay"></span>
-    <span class="logo" style="--brand:var(--ink);--m:url(img/logos/openai.svg)" title="OpenAI"></span>
-    <span class="logo" style="--brand:#0085CA;--m:url(img/logos/acm.svg)" title="ACM"></span>
-    <img class="logo-img" src="img/logos/gssoc.png" alt="GirlScript Summer of Code" title="GirlScript Summer of Code">
-    <span class="word groww" title="Groww"><img src="img/logos/groww-mark.png" alt="">Groww</span>
-  </div>
-
-  <section class="glance" id="abc" aria-label="Aira as easy as A B C">
-    <div class="g-head">
-      <div><span class="kicker">For recruiters</span><h2>The short version</h2></div>
-      <div class="g-cta"><button class="btn primary" data-compose="call">Email to schedule a call</button><button class="btn" data-copy="airasalish@gmail.com">Copy email</button></div>
+  <section class="receipts" id="abc" aria-label="Highlights">
+    <div class="stats" id="stats">
+      <a href="#experience"><b data-to="35" data-prefix="−" data-suffix="%">−35%</b><span>wrong answers in a live AI product</span></a>
+      <a href="#orchestrate"><b data-to="27" data-prefix="#" data-from="1983">#27</b><span>of 1,983 at HackerRank</span></a>
+      <a href="#certifications"><b data-to="1000">1000</b><span>/ 1000 on the AWS AI exam</span></a>
+      <a href="#experience"><b data-to="20" data-suffix="M">20M</b><span>views on one AI short</span></a>
     </div>
-    <div class="abc">
-      <div class="letter">
-        <h3>Accuracy</h3>
-        <ul>
-          <li><a href="#experience">Cut wrong answers in a live AI product by <b>35%</b></a></li>
-          <li><a href="#orchestrate">Took a hackathon agent from <b>79% to 87%</b></a></li>
-          <li><a href="#p-warrant">Reports results on <b>unseen data</b>, not just the good run</a></li>
-        </ul>
-      </div>
-      <div class="letter">
-        <h3>Building</h3>
-        <ul>
-          <li><a href="#orchestrate">Built <b>3 AI agents</b> in 24 hours each</a></li>
-          <li><a href="#projects"><b>3 products</b> live and usable today</a></li>
-          <li><a href="#p-drift"><b>121 passing tests</b> on DRIFT</a></li>
-          <li><a href="#certifications"><img class="bi-img" src="img/logos/gssoc.png" alt="">Open-source contributor, <b>GSSoC 2025</b></a></li>
-        </ul>
-      </div>
-      <div class="letter">
-        <h3>Credentials</h3>
-        <ul>
-          <li><a href="#certifications"><span class="bi" style="--brand:#FF9900;--m:url(img/logos/amazonwebservices.svg)"></span>AWS AI exam: <b>1000 / 1000</b></a></li>
-          <li><a href="#orchestrate"><span class="bi" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span><b>#27</b> out of 1,983 at HackerRank</a></li>
-          <li><a href="#certifications"><span class="bi-citi">citi</span><b>Top 5%</b> of 1,200+ applicants</a></li>
-          <li><a href="#certifications"><span class="bi" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span>Invited to <b>HackerRank Earn</b>, invite-only</a></li>
-        </ul>
-      </div>
+    <div class="chips">
+      <a href="#certifications">Invited to HackerRank Earn</a>
+      <a href="#certifications">Top 5% · Citi Bridge</a>
+      <a href="#projects">3 live products</a>
+      <a href="#certifications">GSSoC 2025 contributor</a>
+      <a href="#experience">ACM-W Technical Lead</a>
     </div>
-    <p class="thread">I like work where you can measure exactly how close you got: model accuracy, a leaderboard rank, a score on an <a href="#beyond">archery target</a>. I also start every day at 4:44 am, with a <a href="#more">planner I built</a> for it.</p>
-    <dl class="g-facts">
-      <div><dt>Looking for</dt><dd>AI / ML engineering internships and new-grad roles</dd></div>
-      <div><dt>Graduating</dt><dd>2027 · B.Tech CSE (AI &amp; ML)</dd></div>
-      <div><dt>Based in</dt><dd>Chennai · from Kannur, Kerala</dd></div>
-      <div><dt>Eligibility</dt><dd>Indian citizen · single degree · no backlogs</dd></div>
-    </dl>
+    <div class="logos" aria-label="Organisations I've been certified, ranked or hired by">
+      <span class="logo" style="--brand:#FF9900;--m:url(img/logos/amazonwebservices.svg)" title="AWS"></span>
+      <span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)" title="HackerRank"></span>
+      <span class="logo" style="--brand:#EE0000;--m:url(img/logos/redhat.svg)" title="Red Hat"></span>
+      <span class="word citi" title="Citi">citi</span>
+      <span class="logo" style="--brand:#0FAAFF;--m:url(img/logos/sap.svg)" title="SAP"></span>
+      <span class="logo" style="--brand:#3395FF;--m:url(img/logos/razorpay.svg)" title="Razorpay"></span>
+      <span class="logo" style="--brand:var(--ink);--m:url(img/logos/openai.svg)" title="OpenAI"></span>
+      <span class="logo" style="--brand:#0085CA;--m:url(img/logos/acm.svg)" title="ACM"></span>
+      <img class="logo-img" src="img/logos/gssoc.png" alt="GirlScript Summer of Code" title="GirlScript Summer of Code">
+      <span class="word groww" title="Groww"><img src="img/logos/groww-mark.png" alt="">Groww</span>
+    </div>
     <div class="quick" role="group" aria-label="Quick actions">
-      <a class="btn sm primary" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf">Download résumé (PDF)</a>
+      <a class="btn sm primary" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf">Résumé (PDF)</a>
       <button class="btn sm" data-compose="forward">Forward to your team</button>
       <button class="btn sm" data-vcard>Save contact</button>
-      <button class="btn sm" data-share>Share portfolio</button>
-      <span class="hint">Every email button opens a pre-written message in Gmail, Outlook or your mail app.</span>
+      <button class="btn sm" data-copy="airasalish@gmail.com">Copy email</button>
     </div>
   </section>
 
   <section class="block" id="about">
-    <div class="head"><div><span class="kicker">About</span><h2>A bit about me</h2></div></div>
+    <div class="head"><div><span class="kicker">About</span><h2>The short of it</h2></div></div>
     <div class="about">
-      <div>
-        <p class="lead">I'm from Kannur in Kerala, I study in Chennai, and most of my work is about making LLMs less wrong.</p>
-        <p>At The Spotted App I built the tests every release had to pass, and wrong answers dropped by 35%. At BabyBillion I wrote prompts and Python pipelines for a kids' channel with over a billion monthly views. Outside work I compete in AI hackathons, where you build and ship an agent in 24 hours.</p>
-        <p style="margin-top:14px">I keep the important logic in normal code and let the model handle the messy parts. Once I switched off a feature I had already shipped, because the tests showed it couldn't be trusted.</p>
-      </div>
+      <ul class="tldr">
+        <li><b>What I do:</b> make LLMs less wrong, then prove it with tests.</li>
+        <li><b>How:</b> important logic in plain code, the model for the messy parts.</li>
+        <li><b>Proof I mean it:</b> I switched off my own shipped feature when the tests failed it.</li>
+        <li><b>Off the clock:</b> archery, hackathons, and a 4:44 am start.</li>
+      </ul>
       <div class="facts">
         <img src="img/aira-2.jpg?v=2" alt="Aira K. Salish" loading="lazy">
         <dl>
           <div><dt>From</dt><dd>Kannur, Kerala</dd></div>
-          <div><dt>Based in</dt><dd>Chennai</dd></div>
-          <div><dt>Education</dt><dd>B.Tech CSE (AI &amp; ML), SRM IST</dd></div>
+          <div><dt>Studying</dt><dd>B.Tech CSE (AI &amp; ML), SRM</dd></div>
           <div><dt>Graduating</dt><dd>2027</dd></div>
-          <div><dt>Focus</dt><dd>LLM apps, testing, agents</dd></div>
-          <div><dt>Leadership</dt><dd>Technical Lead, ACM-W at SRM</dd></div>
+          <div><dt>Eligibility</dt><dd>Indian citizen, no backlogs</dd></div>
         </dl>
       </div>
     </div>
@@ -928,32 +939,22 @@
         <div class="lg">S</div>
         <div>
           <div class="job-top">
-            <div><h3>Generative AI Researcher</h3><div class="co">The Spotted App <span>· AI product team under Amit Baradia, BeSuperhuman.ai · Remote</span></div></div>
+            <div><h3>Generative AI Researcher</h3><div class="co">The Spotted App <span>· BeSuperhuman.ai · Remote</span></div></div>
             <span class="pill">Dec 2025 – Feb 2026</span>
           </div>
-          <ul>
-            <li>Built the testing setup for a live LLM product: scoring prompts, graded test sets and a regression suite that ran on every release.</li>
-            <li>Set the quality bar each release had to clear. <b>Wrong answers went down 35%.</b></li>
-            <li>Wrote up the ways the model kept failing, hallucinations included. The team adopted it as their playbook, and I tracked each defect from reproduction to a verified fix.</li>
-            <li>Reported progress, findings and risks to the founders early, and fed their feedback into the next cycle.</li>
-          </ul>
+          <p class="one">Built the tests every release had to pass. <b>Wrong answers dropped 35%.</b></p>
         </div>
       </article>
       <article class="job">
         <div class="lg"><img src="img/bb-logo.jpg" alt="BabyBillion logo"></div>
         <div>
           <div class="job-top">
-            <div><h3>Prompt Engineering &amp; Automation Intern</h3><div class="co">BabyBillion <span>· under Dinesh Godra, ex-VP Unacademy · 1.5B+ monthly views · Bengaluru</span></div></div>
+            <div><h3>Prompt Engineering &amp; Automation Intern</h3><div class="co">BabyBillion <span>· 1.5B+ monthly views · Bengaluru</span></div></div>
             <span class="pill">May – Sept 2025</span>
           </div>
-          <ul>
-            <li>Wrote prompts and AI video pipelines for the channel. <b>One short got 20 million views.</b></li>
-            <li>Automated 50+ workflows in Python, which <b>cut about 40% of the team's repetitive work</b>.</li>
-            <li>Made the reporting SQL 30% faster and built dashboards the sales team could use without asking anyone. I also checked the data and flagged problems before they reached reports.</li>
-          </ul>
+          <p class="one">AI video pipelines and Python automation. <b>One short hit 20M views; 40% less busywork.</b></p>
           <div class="actions">
-            <button class="btn sm" data-open="img/babybillion.jpg" data-cap="BabyBillion experience letter" data-pdf="docs/babybillion-experience-letter.pdf">View experience letter</button>
-            <a class="btn sm" href="docs/babybillion-experience-letter.pdf" target="_blank" rel="noopener">PDF</a>
+            <button class="btn sm" data-open="img/babybillion.jpg" data-cap="BabyBillion experience letter" data-pdf="docs/babybillion-experience-letter.pdf">Experience letter</button>
             <button class="btn sm" data-open="img/bb-team.jpg" data-cap="With the BabyBillion team at the Bengaluru office">Team photo</button>
           </div>
         </div>
@@ -962,234 +963,187 @@
         <div class="lg acm"><span class="ic-acm"></span></div>
         <div>
           <div class="job-top">
-            <div><h3>Technical Lead, AI/ML</h3><div class="co">ACM-W SRMIST <span>· ACM's women in computing chapter at SRM, 120+ members · Chennai</span></div></div>
+            <div><h3>Technical Lead, AI/ML</h3><div class="co">ACM-W SRMIST <span>· 120+ members · Chennai</span></div></div>
             <span class="pill">Jan 2023 – Present</span>
           </div>
-          <ul>
-            <li><b>ACM</b> is the world's largest computing society, and <b>ACM-W</b> is its council for women in computing. SRM's chapter started in 2020.</li>
-            <li>I lead the technical side: teaching <b>algorithms, data structures and problem solving</b>, and sitting with members while they debug and plan better solutions.</li>
-          </ul>
+          <p class="one">Lead the tech side of ACM's women-in-computing chapter. <b>Teach DSA and debugging.</b></p>
         </div>
       </article>
     </div>
   </section>
 
   <section class="block" id="projects">
-    <div class="head"><div><span class="kicker">Projects</span><h2>Selected work</h2></div><p>Each project links to its code. The first three also have video walkthroughs; hover to preview.</p></div>
+    <div class="head"><div><span class="kicker">Projects</span><h2>Things I've shipped</h2></div><p>Hover a card for a fast-forward preview.</p></div>
     <div class="projects">
       <article class="proj" id="p-warrant">
         <button class="shot vid" data-play="mp4" data-src-full="vid/warrant-full.mp4?v=3" data-title="WARRANT, 5-minute pitch" aria-label="Play the WARRANT pitch video">
           <img class="still" src="img/warrant.jpg" alt="" loading="lazy">
           <video muted playsinline loop preload="none" poster="vid/warrant-poster.jpg?v=3" data-src="vid/warrant-glimpse.mp4?v=3"></video>
-          <span class="ff">Preview</span><span class="play"><i>▶</i>Watch the 5-min pitch</span>
+          <span class="ff">Preview</span><span class="play"><i>▶</i>5-min pitch</span>
         </button>
         <div class="body">
-          <span class="eyebrow"><span class="bi" style="--brand:#3395FF;--m:url(img/logos/razorpay.svg)"></span>Razorpay AI Buildathon · Sept 2026</span>
+          <span class="eyebrow">Razorpay AI Buildathon · 2026</span>
           <h3>WARRANT</h3>
-          <p>An AI agent that decides chargeback disputes, built for Razorpay's AI Buildathon. The risk checks run in plain Python, so every decision can be traced back. On unseen data, recall dropped from 92% to 71%. I put that number in the README instead of hiding it.</p>
-          <div class="tags"><span class="tag p-det">Rules in code</span><span class="tag p-grd">Prompt-injection tested</span><span class="tag p-eval">Tested on unseen data</span></div>
-          <div class="foot"><span class="metric"><b>0</b> false positives or negatives · <b>100%</b> defence rate under adversarial tests · 51 commits</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/warrant-full.mp4?v=3" data-title="WARRANT, 5-minute pitch">▶ Pitch</button><a class="btn sm" href="https://github.com/airasalish/warrant---Razorpay-2026" target="_blank" rel="noopener">Code</a></span></div>
+          <p>AI that decides chargeback disputes, and can show its working.</p>
+          <div class="foot"><span class="metric"><b>0</b> wrong committed calls · <b>100%</b> vs attacks</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/warrant-full.mp4?v=3" data-title="WARRANT, 5-minute pitch">▶ Pitch</button><a class="btn sm" href="https://github.com/airasalish/warrant---Razorpay-2026" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
       <article class="proj" id="p-drift">
         <button class="shot vid" data-play="yt" data-yt="l2lPWKitNJ0" data-title="DRIFT, 8-minute pitch" aria-label="Play the DRIFT pitch video">
           <img class="still" src="img/drift.jpg" alt="" loading="lazy">
           <video muted playsinline loop preload="none" poster="vid/drift-poster.jpg" data-src="vid/drift-glimpse.mp4"></video>
-          <span class="ff">Preview</span><span class="play"><i>▶</i>Watch the 8-min pitch</span>
+          <span class="ff">Preview</span><span class="play"><i>▶</i>8-min pitch</span>
         </button>
         <div class="body">
-          <span class="eyebrow"><img class="bi-img" src="img/logos/groww-mark.png" alt="">Code, by Groww · 2026</span>
+          <span class="eyebrow">Code, by Groww · 2026</span>
           <h3>DRIFT</h3>
-          <p>A stock watchlist for Groww's buildathon that tells you what actually changed since you last looked. Five simple rules, and each one shows why it fired. The AI summary is optional and sits on top.</p>
-          <div class="tags"><span class="tag p-det">Explainable rules</span><span class="tag p-test">121 tests</span><span class="tag p-live">Live</span></div>
-          <div class="foot"><span class="metric"><b>191</b> commits · 20+ logged design decisions</span><span class="links"><button class="btn sm primary" data-play="yt" data-yt="l2lPWKitNJ0" data-title="DRIFT, 8-minute pitch">▶ Pitch</button><a class="btn sm" href="https://frontend-dusky-omega-11.vercel.app" target="_blank" rel="noopener">Live demo</a><a class="btn sm" href="https://github.com/airasalish/drift" target="_blank" rel="noopener">Code</a></span></div>
+          <p>A stock watchlist that tells you what changed, and why.</p>
+          <div class="foot"><span class="metric"><b>121</b> tests · <b>191</b> commits · live</span><span class="links"><button class="btn sm primary" data-play="yt" data-yt="l2lPWKitNJ0" data-title="DRIFT, 8-minute pitch">▶ Pitch</button><a class="btn sm" href="https://frontend-dusky-omega-11.vercel.app" target="_blank" rel="noopener">Live</a><a class="btn sm" href="https://github.com/airasalish/drift" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
       <article class="proj" id="p-aira">
         <button class="shot vid top" data-play="mp4" data-src-full="vid/aira-full.mp4" data-title="AIRA, 5-minute walkthrough" aria-label="Play the AIRA walkthrough video">
           <img class="still" src="img/aira-app.jpg" alt="" loading="lazy">
           <video muted playsinline loop preload="none" poster="vid/aira-poster.jpg" data-src="vid/aira-glimpse.mp4"></video>
-          <span class="ff">Preview</span><span class="play"><i>▶</i>Watch the 5-min demo</span>
+          <span class="ff">Preview</span><span class="play"><i>▶</i>5-min demo</span>
         </button>
         <div class="body">
-          <span class="eyebrow">Built for Xeno Engineering Internship · 2026</span>
-          <h3>AIRA, AI Reach Agent</h3>
-          <p>Type a goal like "bring back customers who stopped ordering" and AIRA picks the customers, writes three versions of the message, chooses WhatsApp or email, and shows delivery stats live. All in under 30 seconds. Built for Xeno's internship challenge.</p>
-          <div class="tags"><span class="tag p-det">Rule-based targeting</span><span class="tag p-grd">Output safety checks</span><span class="tag p-test">35 bugs documented</span><span class="tag p-live">Live</span></div>
-          <div class="foot"><span class="metric">Next.js · Groq · Node service</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/aira-full.mp4" data-title="AIRA, 5-minute walkthrough">▶ Demo</button><a class="btn sm" href="https://aira-ecru.vercel.app" target="_blank" rel="noopener">Live site</a><a class="btn sm" href="https://github.com/airasalish/AIRA-AI-Reach-Agent" target="_blank" rel="noopener">Code</a></span></div>
+          <span class="eyebrow">Xeno internship challenge · 2026</span>
+          <h3>AIRA</h3>
+          <p>One sentence in, a full marketing campaign out. In under 30 seconds.</p>
+          <div class="foot"><span class="metric"><b>35</b> bugs found and fixed · live</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/aira-full.mp4" data-title="AIRA, 5-minute walkthrough">▶ Demo</button><a class="btn sm" href="https://aira-ecru.vercel.app" target="_blank" rel="noopener">Live</a><a class="btn sm" href="https://github.com/airasalish/AIRA-AI-Reach-Agent" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
       <article class="proj" id="p-seismo">
         <div class="shot top"><img src="img/logseismo.jpg" alt="Log-Seismo incident dashboard" loading="lazy"></div>
         <div class="body">
-          <span class="eyebrow"><span class="bi" style="--brand:#FF9900;--m:url(img/logos/amazonwebservices.svg)"></span>Team project on AWS · 2026</span>
+          <span class="eyebrow">Team project on AWS · 2026</span>
           <h3>Log-Seismo</h3>
-          <p>Watches server logs, learns what a normal error rate looks like, and sends an alert through AWS the moment it spikes. Five of us built it; I connected all the pieces.</p>
-          <div class="tags"><span class="tag p-det">Learns what normal looks like</span><span class="tag p-eval">Alert speed measured</span></div>
-          <div class="foot"><span class="metric">FastAPI · React · Team of 5</span><span class="links"><a class="btn sm" href="https://github.com/gershomrichardbruno/Log-Seismo" target="_blank" rel="noopener">Code</a></span></div>
+          <p>Spots error spikes in server logs and alerts the team, live.</p>
+          <div class="foot"><span class="metric">Team of 5 · I wired it together</span><span class="links"><a class="btn sm" href="https://github.com/gershomrichardbruno/Log-Seismo" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
     </div>
     <a class="more-gh" href="https://github.com/airasalish?tab=repositories" target="_blank" rel="noopener">
       <span class="gh-ic"></span>
-      <span class="gh-t"><b>See all my projects on GitHub</b><small>github.com/airasalish · hackathon agents, experiments and everything in between</small></span>
+      <span class="gh-t"><b>See everything on GitHub</b><small>github.com/airasalish</small></span>
       <span class="gh-go">↗</span>
     </a>
   </section>
 
   <section class="block" id="orchestrate">
-    <div class="head"><div><span class="kicker"><span class="bi" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span>HackerRank Orchestrate · 2026</span><h2>Three rounds, three agents</h2></div><p>Three 24-hour hackathons. A new problem every time: build an AI agent, ship it, get ranked. Tap a rank card to see the certificate.</p></div>
-    <div class="what">
-      <button class="what-img" data-open="img/orchestrate-event.jpg" data-cap="HackerRank Orchestrate, August edition">
-        <img src="img/orchestrate-event.jpg" alt="Participants at HackerRank Orchestrate, August edition, in front of the event countdown screen" loading="lazy">
-      </button>
-      <div class="what-text">
-        <h3>What's Orchestrate?</h3>
-        <p>HackerRank's 24-hour hackathon. You get a real problem, design and ship an AI agent before the clock runs out, and then walk through your design in an interview. Everyone gets ranked on a public leaderboard.</p>
-        <div class="what-stats">
-          <div><b>24 h</b><span>to build and ship</span></div>
-          <div><b>15,295</b><span>signed up for one edition</span></div>
-          <div><b>2,039</b><span>actually shipped an agent</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="head"><div><span class="kicker">HackerRank Orchestrate · 2026</span><h2>#206 → #27 → #84</h2></div><p>HackerRank's 24-hour AI agent hackathon. 15,295 signed up; 2,039 shipped.</p></div>
     <div class="rounds">
       <article class="round">
-        <div class="r-top"><span class="r-step">Round 1 · June</span><span class="r-pct">Top 11.6%</span></div>
+        <div class="r-top"><span class="r-step">June</span><span class="r-pct">Top 11.6%</span></div>
         <button class="r-card" data-open="img/orch-june.jpg" data-cap="HackerRank Orchestrate, June 2026: final rank #206 of 1,773" data-pdf="docs/hackerrank-orchestrate-june-2026.pdf"><img src="img/rank-june.jpg" alt="Final rank #206 of 1,773, verified by HackerRank"><span class="r-hint">View certificate</span></button>
         <h3>Damage-claim photo checker</h3>
-        <p>Looks at the photos sent with a damage claim (a car, a laptop or a parcel) and decides whether they really back it up. Built on Gemini vision, with checks so it can only answer in the allowed formats.</p>
-        <div class="tags"><span class="tag p-grd">Checked outputs</span><span class="tag p-eval">Per-field accuracy</span></div>
-        <div class="r-links"><button class="btn sm cert-btn" data-open="img/orch-june.jpg" data-cap="HackerRank Orchestrate, June 2026: final rank #206 of 1,773" data-pdf="docs/hackerrank-orchestrate-june-2026.pdf"><img src="img/orch-june.jpg" alt="">Certificate</button><a class="btn sm" href="https://github.com/airasalish/-hackerrank-orchestrate-june26" target="_blank" rel="noopener">Code</a></div>
+        <p>Do the photos actually prove the damage?</p>
+        <div class="r-links"><a class="btn sm" href="https://github.com/airasalish/-hackerrank-orchestrate-june26" target="_blank" rel="noopener">Code</a></div>
       </article>
       <article class="round best">
         <span class="r-badge">Best finish</span>
-        <div class="r-top"><span class="r-step">Round 2 · August</span><span class="r-pct">Top 1.4%</span></div>
+        <div class="r-top"><span class="r-step">August</span><span class="r-pct">Top 1.4%</span></div>
         <button class="r-card" data-open="img/orch-aug.jpg" data-cap="HackerRank Orchestrate, August 2026: final rank #27 of 1,983" data-pdf="docs/hackerrank-orchestrate-august-2026.pdf"><img src="img/rank-aug.jpg" alt="Final rank #27 of 1,983, verified by HackerRank"><span class="r-hint">View certificate</span></button>
         <h3>WhatsApp notification router</h3>
-        <p>Reads WhatsApp messages, posters and voice notes, and decides whether to ping you now, save it for a digest, or mute it. The decision is different for every user.</p>
-        <div class="tags"><span class="tag p-det">Plain-Python joins</span><span class="tag p-test">Regression tests</span></div>
-        <div class="r-links"><button class="btn sm cert-btn" data-open="img/orch-aug.jpg" data-cap="HackerRank Orchestrate, August 2026: final rank #27 of 1,983" data-pdf="docs/hackerrank-orchestrate-august-2026.pdf"><img src="img/orch-aug.jpg" alt="">Certificate</button><a class="btn sm" href="https://github.com/airasalish/hackerrank_orchestrate_august26" target="_blank" rel="noopener">Code</a></div>
+        <p>Ping now, save for later, or mute?</p>
+        <div class="r-links"><a class="btn sm" href="https://github.com/airasalish/hackerrank_orchestrate_august26" target="_blank" rel="noopener">Code</a></div>
       </article>
       <article class="round">
-        <div class="r-top"><span class="r-step">Round 3 · September</span><span class="r-pct">Top 2.7%</span></div>
+        <div class="r-top"><span class="r-step">September</span><span class="r-pct">Top 2.7%</span></div>
         <button class="r-card" data-open="img/orch-sept.jpg" data-cap="HackerRank Orchestrate, September 2026: final rank #84 of 3,062" data-pdf="docs/hackerrank-orchestrate-september-2026.pdf"><img src="img/rank-sept.jpg" alt="Final rank #84 of 3,062, verified by HackerRank"><span class="r-hint">View certificate</span></button>
         <h3>Buy or Wait? money agent</h3>
-        <p>Works out how much money someone really has, looks 90 days ahead, and says whether a purchase is safe right now. When the image reader misread a document during testing, I turned it off.</p>
-        <div class="tags"><span class="tag p-det">Rule-based forecast</span><span class="tag p-grd">Fails closed</span><span class="tag p-test">Unit + regression tests</span></div>
-        <div class="r-links"><button class="btn sm cert-btn" data-open="img/orch-sept.jpg" data-cap="HackerRank Orchestrate, September 2026: final rank #84 of 3,062" data-pdf="docs/hackerrank-orchestrate-september-2026.pdf"><img src="img/orch-sept.jpg" alt="">Certificate</button><a class="btn sm" href="https://github.com/airasalish/buy-or-wait-orchestrate" target="_blank" rel="noopener">Code</a></div>
+        <p>Can you afford it, looking 90 days ahead?</p>
+        <div class="r-links"><a class="btn sm" href="https://github.com/airasalish/buy-or-wait-orchestrate" target="_blank" rel="noopener">Code</a></div>
       </article>
     </div>
-    <div class="r-summary">
-      <div><b>3</b><span>agents built, 24 hours each</span></div>
-      <div><b>6,818</b><span>people competed across the 3 rounds</span></div>
-      <div><b>79 → 87%</b><span>accuracy, fixing mistakes one by one</span></div>
-      <div><b>Top 1.4%</b><span>best finish, then a 30-minute live interview</span></div>
-    </div>
-    <a class="led" href="#certifications"><span class="led-ic"></span><span><b>Where it led:</b> HackerRank invited me to <b>HackerRank Earn</b>, its invite-only, paid expert network for top performers.</span><span class="led-go">→</span></a>
-  </section>
-
-  <section class="block" id="more">
-    <div class="head"><div><span class="kicker">More builds</span><h2>Other projects</h2></div></div>
-    <div class="more">
-      <a class="more-item has-img" href="https://daily-ritual-livid.vercel.app" target="_blank" rel="noopener">
-        <img src="img/daily-ritual.jpg" alt="Daily Ritual planner" loading="lazy">
-        <div><h3>Daily Ritual</h3><p>The planner I built for my own 4:44 am routine. It works out free time around fixed events and lets you drop chores into the gaps.</p></div>
-        <span class="tags"><span class="tag">Web app</span><span class="tag p-live">Live</span></span><span class="go">Live ↗</span>
-      </a>
-      <div class="more-item has-img">
-        <img src="img/campusweb.jpg" alt="The Campus Web sign-in screen" loading="lazy">
-        <div><h3>The Campus Web</h3><p>A login portal for SRM students and club organisers that works with your SRM email or Net ID.</p></div>
-        <span class="tags"><span class="tag">Web app</span><span class="tag">Auth</span></span><span class="go"></span>
-      </div>
-    </div>
+    <a class="led" href="#certifications"><span class="led-ic"></span><span><b>Where it led:</b> an invite to <b>HackerRank Earn</b>, its invite-only expert network.</span><span class="led-go">→</span></a>
   </section>
 
   <section class="block" id="certifications">
-    <div class="head"><div><span class="kicker">Certifications &amp; awards</span><h2>Certifications</h2></div><p>View opens it here, PDF downloads it, Verify checks it on Credly.</p></div>
-    <div class="certs">
-      <div class="cert">
+    <div class="head"><div><span class="kicker">Credentials</span><h2>Checked by big names</h2></div><p>Tap any tile to see the certificate.</p></div>
+    <div class="certs tiles">
+      <button class="cert" data-open="img/aws.jpg" data-cap="AWS Certified AI Practitioner: score 1000 / 1000" data-pdf="docs/aws-ai-practitioner.pdf">
         <div class="lg"><span class="logo" style="--brand:#FF9900;--m:url(img/logos/amazonwebservices.svg)"></span></div>
-        <div><h3>AWS Certified AI Practitioner</h3><div class="sub">Amazon Web Services · Jul 2026 · Score <b>1000 / 1000</b></div></div>
-        <div class="actions"><button class="btn sm" data-open="img/aws.jpg" data-cap="AWS Certified AI Practitioner: score 1000 / 1000" data-pdf="docs/aws-ai-practitioner.pdf">View</button><a class="btn sm" href="docs/aws-ai-practitioner.pdf" target="_blank" rel="noopener">PDF</a></div>
-      </div>
-      <div class="cert">
+        <div><h3>AWS AI Practitioner</h3><div class="sub"><b>1000 / 1000</b></div></div>
+      </button>
+      <button class="cert" data-open="img/sap-cert.jpg" data-cap="SAP Certified Back-End Developer, ABAP Cloud" data-pdf="docs/sap-abap-cloud.pdf">
+        <div class="lg"><span class="logo" style="--brand:#0FAAFF;--m:url(img/logos/sap.svg)"></span></div>
+        <div><h3>SAP Back-End Developer</h3><div class="sub">ABAP Cloud · 2026</div></div>
+      </button>
+      <button class="cert" data-open="img/orch-aug.jpg" data-cap="HackerRank Orchestrate, August 2026: final rank #27 of 1,983" data-pdf="docs/hackerrank-orchestrate-august-2026.pdf">
         <div class="lg"><span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span></div>
-        <div><h3>HackerRank Orchestrate, August 2026</h3><div class="sub">HackerRank · Final rank <b>#27 of 1,983</b></div></div>
-        <div class="actions"><button class="btn sm" data-open="img/orch-aug.jpg" data-cap="HackerRank Orchestrate, August 2026: final rank #27 of 1,983" data-pdf="docs/hackerrank-orchestrate-august-2026.pdf">View</button><a class="btn sm" href="docs/hackerrank-orchestrate-august-2026.pdf" target="_blank" rel="noopener">PDF</a></div>
-      </div>
-      <div class="cert">
+        <div><h3>HackerRank Orchestrate</h3><div class="sub"><b>#27</b> of 1,983</div></div>
+      </button>
+      <a class="cert" href="#orchestrate">
         <div class="lg"><span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span></div>
-        <div><h3>HackerRank Orchestrate, September 2026</h3><div class="sub">HackerRank · Final rank <b>#84 of 3,062</b></div></div>
-        <div class="actions"><button class="btn sm" data-open="img/orch-sept.jpg" data-cap="HackerRank Orchestrate, September 2026: final rank #84 of 3,062" data-pdf="docs/hackerrank-orchestrate-september-2026.pdf">View</button><a class="btn sm" href="docs/hackerrank-orchestrate-september-2026.pdf" target="_blank" rel="noopener">PDF</a></div>
-      </div>
-      <div class="cert">
+        <div><h3>HackerRank Earn</h3><div class="sub">Invite-only network</div></div>
+      </a>
+      <button class="cert" data-open="img/citi-cert.jpg" data-cap="Citi Bridge Program 2026: Certificate of Recognition" data-pdf="docs/citi-bridge-2026.pdf">
         <div class="lg"><span class="citi">citi</span></div>
-        <div><h3>Citi Bridge Program 2026, Certificate of Recognition</h3><div class="sub">Citi · Mar 2026 · Top 5% of 1,200+ applicants</div></div>
-        <div class="actions"><button class="btn sm" data-open="img/citi-cert.jpg" data-cap="Citi Bridge Program 2026: Certificate of Recognition" data-pdf="docs/citi-bridge-2026.pdf">View</button><a class="btn sm" href="docs/citi-bridge-2026.pdf" target="_blank" rel="noopener">PDF</a></div>
-      </div>
-      <div class="cert">
+        <div><h3>Citi Bridge 2026</h3><div class="sub"><b>Top 5%</b> of 1,200+</div></div>
+      </button>
+      <button class="cert" data-open="img/redhat.jpg" data-cap="Red Hat RH294: Enterprise Linux Automation with Ansible" data-pdf="docs/redhat-rh294.pdf">
         <div class="lg"><span class="logo" style="--brand:#EE0000;--m:url(img/logos/redhat.svg)"></span></div>
-        <div><h3>Red Hat Enterprise Linux Automation with Ansible (RH294)</h3><div class="sub">Red Hat · Apr 2026 · 32 credit hours</div></div>
-        <div class="actions"><button class="btn sm" data-open="img/redhat.jpg" data-cap="Red Hat RH294: Enterprise Linux Automation with Ansible" data-pdf="docs/redhat-rh294.pdf">View</button><a class="btn sm" href="https://www.credly.com/badges/b6c45fd1-ceac-4b50-8b31-f790a4ef6ed2" target="_blank" rel="noopener">Verify</a></div>
-      </div>
+        <div><h3>Red Hat RH294</h3><div class="sub">Linux automation</div></div>
+      </button>
       <div class="cert">
-        <div class="lg"><span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span></div>
-        <div><h3>HackerRank Orchestrate, June 2026</h3><div class="sub">HackerRank · Final rank <b>#206 of 1,773</b></div></div>
-        <div class="actions"><button class="btn sm" data-open="img/orch-june.jpg" data-cap="HackerRank Orchestrate, June 2026: final rank #206 of 1,773" data-pdf="docs/hackerrank-orchestrate-june-2026.pdf">View</button><a class="btn sm" href="docs/hackerrank-orchestrate-june-2026.pdf" target="_blank" rel="noopener">PDF</a></div>
-      </div>
-      <div class="cert">
-        <div class="lg img"><img src="img/sap-badge.jpg" alt="SAP Certified badge"></div>
-        <div><h3>SAP Certified Back-End Developer, ABAP Cloud</h3><div class="sub">SAP · Apr 2026 · valid to Apr 2027</div></div>
-        <div class="actions"><button class="btn sm" data-open="img/sap-cert.jpg" data-cap="SAP Certified Back-End Developer, ABAP Cloud" data-pdf="docs/sap-abap-cloud.pdf">View</button><a class="btn sm" href="https://www.credly.com/badges/5ac8fff1-58ba-4f33-850e-f3fe3a7831a2" target="_blank" rel="noopener">Verify</a></div>
-      </div>
-      <div class="cert">
-        <div class="lg"><span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span></div>
-        <div><h3>Invited to HackerRank Earn</h3><div class="sub">HackerRank · 2026 · <b>invite-only</b>, paid expert network for top performers</div></div>
-        <div class="actions"></div>
-      </div>
-      <div class="cert">
-        <div class="lg img"><img src="img/logos/gssoc.png" alt="GirlScript Summer of Code logo"></div>
-        <div><h3>Contributor, GirlScript Summer of Code 2025</h3><div class="sub">GirlScript · 2025 · <b>India's largest open-source program</b></div></div>
-        <div class="actions"></div>
+        <div class="lg"><img class="gs" src="img/logos/gssoc.png" alt=""></div>
+        <div><h3>GSSoC 2025</h3><div class="sub">Open-source contributor</div></div>
       </div>
       <div class="cert">
         <div class="lg"><span class="logo" style="--brand:var(--ink);--m:url(img/logos/openai.svg)"></span></div>
-        <div><h3>State Finalist, OpenAI × NxtWave Buildathon</h3><div class="sub">OpenAI × NxtWave · selected as a state finalist</div></div>
-        <div class="actions"></div>
+        <div><h3>OpenAI × NxtWave</h3><div class="sub">State finalist</div></div>
       </div>
     </div>
+    <p class="verify">Verify on Credly: <a href="https://www.credly.com/badges/5ac8fff1-58ba-4f33-850e-f3fe3a7831a2" target="_blank" rel="noopener">SAP</a> · <a href="https://www.credly.com/badges/b6c45fd1-ceac-4b50-8b31-f790a4ef6ed2" target="_blank" rel="noopener">Red Hat</a></p>
   </section>
 
   <section class="block" id="moments">
-    <div class="head"><div><span class="kicker">Moments</span><h2>A few photos</h2></div><p>Click any photo to open it.</p></div>
+    <div class="head"><div><span class="kicker">Moments</span><h2>Off the screen</h2></div></div>
     <div class="gallery">
       <button class="shot-btn g-wide" data-open="img/bb-team.jpg" data-cap="With the BabyBillion team at the Bengaluru office, 2025">
         <img src="img/bb-team.jpg" alt="The BabyBillion team" loading="lazy" style="object-position:0% 50%">
         <span class="me-pin" id="mePin" data-fx="0.069" data-fy="0.125">Me</span>
-        <figcaption><b>The BabyBillion team</b>Bengaluru office, 2025</figcaption>
+        <figcaption><b>BabyBillion team</b>Bengaluru, 2025</figcaption>
       </button>
       <button class="shot-btn g-tall" data-open="img/citi-me.jpg" data-cap="At Citi during the Citi Bridge Program 2026">
         <img src="img/citi-me.jpg" alt="Aira at the Citi office" loading="lazy" style="object-position:20% 72%">
-        <figcaption><b>Citi Bridge 2026</b>At the Citi office</figcaption>
+        <figcaption><b>Citi Bridge</b>2026</figcaption>
+      </button>
+      <button class="shot-btn g-half" data-open="img/orchestrate-event.jpg" data-cap="HackerRank Orchestrate, August edition">
+        <img src="img/orchestrate-event.jpg" alt="HackerRank Orchestrate participants" loading="lazy">
+        <figcaption><b>HackerRank Orchestrate</b>August 2026</figcaption>
       </button>
       <button class="shot-btn g-half" data-open="img/team.jpg" data-cap="Heads-down at a hackathon">
         <img src="img/team.jpg" alt="Aira working at a hackathon" loading="lazy">
         <figcaption><b>Hackathon</b>Building on the day</figcaption>
       </button>
-      <button class="shot-btn g-half" data-open="img/session.jpg" data-cap="At a women-in-tech session">
-        <img src="img/session.jpg" alt="A women-in-tech session" loading="lazy" style="object-position:50% 45%">
-        <figcaption><b>Women in tech</b>Learning from industry speakers</figcaption>
-      </button>
+    </div>
+  </section>
+
+  <section class="block" id="more">
+    <div class="head"><div><span class="kicker">Side builds</span><h2>Small things</h2></div></div>
+    <div class="more">
+      <a class="more-item has-img" href="https://daily-ritual-livid.vercel.app" target="_blank" rel="noopener">
+        <img src="img/daily-ritual.jpg" alt="Daily Ritual planner" loading="lazy">
+        <div><h3>Daily Ritual</h3><p>The planner for my 4:44 am mornings.</p></div>
+        <span class="go">Live ↗</span>
+      </a>
+      <div class="more-item has-img">
+        <img src="img/campusweb.jpg" alt="The Campus Web sign-in screen" loading="lazy">
+        <div><h3>The Campus Web</h3><p>SRM login portal for students and clubs.</p></div>
+        <span class="go"></span>
+      </div>
     </div>
   </section>
 
   <section class="block" id="beyond">
-    <div class="head"><div><span class="kicker">Outside work</span><h2>Archery</h2></div></div>
+    <div class="head"><div><span class="kicker">Break time</span><h2>Shoot an arrow</h2></div></div>
     <div class="range">
       <div>
-        <h3>A small game</h3>
-        <p>I shoot archery in my free time. Click the target to try it: six arrows per round, with a little wind.</p>
+        <h3>I do archery. Your turn.</h3>
+        <p>Click the target. Six arrows, a little wind.</p>
         <div class="scorecard" id="card" aria-label="Scorecard"><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div class="tally" id="tally" aria-live="polite">Click the target, or use the button.</div>
         <button class="btn" id="shootBtn" style="margin-top:14px">Shoot an arrow</button>
@@ -1206,24 +1160,16 @@
   </section>
 
   <section class="block" id="skills">
-    <div class="head"><div><span class="kicker">Skills</span><h2>Toolkit</h2></div></div>
-    <div class="skills">
-      <div class="skill"><h3>LLMs &amp; prompting</h3><div class="tags"><span class="tag">Few-shot</span><span class="tag">Chain-of-thought</span><span class="tag">Structured outputs</span><span class="tag">System prompts</span><span class="tag">Tokens &amp; context windows</span><span class="tag">Temperature / top-p</span></div></div>
-      <div class="skill"><h3>Agents &amp; tool use</h3><div class="tags"><span class="tag">Bounded agent loops</span><span class="tag">Tool calling</span><span class="tag">LLM APIs</span><span class="tag">Retrieval grounding</span><span class="tag">Rate-limit-aware batching</span><span class="tag">Resumable runs</span></div></div>
-      <div class="skill"><h3>Evaluation &amp; safety</h3><div class="tags"><span class="tag">Rubric test sets</span><span class="tag">Regression suites</span><span class="tag">Held-out evaluation</span><span class="tag">Precision / recall</span><span class="tag">Hallucination checks</span><span class="tag">Prompt injection</span></div></div>
-      <div class="skill"><h3>Software engineering</h3><div class="tags"><span class="tag">Python (OOP)</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">REST APIs</span><span class="tag">Git</span><span class="tag">Unit &amp; integration tests</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Linux</span></div></div>
-      <div class="skill"><h3>Data &amp; BI</h3><div class="tags"><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">Jupyter</span><span class="tag">Dashboards</span><span class="tag">Data validation</span></div></div>
-      <div class="skill"><h3>Deep learning &amp; ML</h3><div class="tags"><span class="tag">Transformers</span><span class="tag">Attention</span><span class="tag">Tokenization</span><span class="tag">Supervised learning</span><span class="tag">Model metrics</span><span class="tag">RAG vs fine-tuning</span></div></div>
-      <div class="skill"><h3>Delivery</h3><div class="tags"><span class="tag">Agile &amp; Waterfall</span><span class="tag">Requirement gathering</span><span class="tag">Prototyping</span><span class="tag">Test case writing</span><span class="tag">Technical docs</span><span class="tag">Stakeholder updates</span></div></div>
-      <div class="skill"><h3>Currently learning</h3><div class="tags"><span class="tag">Kubernetes</span><span class="tag">C programming</span></div></div>
+    <div class="head"><div><span class="kicker">Skills</span><h2>Toolkit</h2></div><p>Full list on the <a class="inline" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf">résumé</a>.</p></div>
+    <div class="skill-row">
+      <span>Python</span><span>LLM APIs</span><span>Prompting</span><span>AI agents</span><span>LLM evaluation</span><span>RAG</span><span>SQL</span><span>PostgreSQL</span><span>React</span><span>REST APIs</span><span>Docker</span><span>AWS</span><span>Git</span><span>pandas</span><span>Java</span><span>Linux</span>
     </div>
-    <p class="coursework"><b>Coursework:</b> Machine Learning, Data Science, Deep Learning, Data Structures &amp; Algorithms, Object-Oriented Programming, DBMS, Operating Systems, Software Engineering &amp; Project Management.</p>
   </section>
 
   <section class="contact" id="contact">
     <div>
       <h2>Let's talk.</h2>
-      <p>I'm looking for AI / ML internships and new-grad roles. Choose an option below and it opens a ready-to-send email.</p>
+      <p>One click opens a ready-to-send email.</p>
       <div class="c-row">
         <button class="c-mini" data-copy="airasalish@gmail.com">Copy email</button>
         <button class="c-mini" data-vcard>Save contact</button>
@@ -1233,10 +1179,9 @@
       </div>
     </div>
     <div class="list">
-      <button data-compose="call"><span>Schedule a call<em>Blanks for your company, role and times</em></span><small>→</small></button>
-      <a class="c-dl" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf"><span>Download my résumé<em>One-page PDF</em></span><small>↓</small></a>
-      <button data-compose="forward"><span>Forward me to your team<em>A ready summary for your hiring manager</em></span><small>→</small></button>
-      <button data-compose="hello"><span>Say hello<em>Questions or collaborations</em></span><small>→</small></button>
+      <button data-compose="call"><span>Schedule a call<em>Pre-written, just hit send</em></span><small>→</small></button>
+      <a class="c-dl" href="docs/aira-salish-resume.pdf" download="Aira-Salish-Resume.pdf"><span>Download résumé<em>One-page PDF</em></span><small>↓</small></a>
+      <button data-compose="forward"><span>Forward me to your team<em>A ready summary for your manager</em></span><small>→</small></button>
     </div>
   </section>
 
@@ -1699,6 +1644,11 @@ document.getElementById('shootBtn').addEventListener('click', () => shoot((Math.
   document.querySelectorAll('.shot.vid').forEach(t => fine && t.addEventListener('pointerenter', throttle(S.seg, 300)));
   const sb = document.getElementById('soundBtn'); if (sb) sb.addEventListener('click', () => setTimeout(() => Sound.on && S.done(), 20));
 })();
+
+/* reading progress bar */
+(() => { const bar = document.getElementById('progress'); if (!bar) return;
+  const f = () => { const h = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`; };
+  addEventListener('scroll', f, { passive: true }); f(); })();
 </script>
 </body>
 </html>
