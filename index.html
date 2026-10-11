@@ -817,6 +817,7 @@
   @media (max-width: 760px) { .stats a + a { padding-left: 16px; } .stats a:nth-child(3) { border-left: 0; padding-left: 0; } .stats a:nth-child(n+3) { border-top: 1px solid var(--line); } .tldr li { font-size: 16.5px; } }
   .receipts { counter-increment: sec; }
   .proj p.stack { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-top: 10px; }
+  .ctype { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -830,7 +831,7 @@
       <li><a href="#experience">Work</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#orchestrate">Hackathons</a></li>
-      <li><a href="#certifications">Credentials</a></li>
+      <li><a href="#certifications">Certificates</a></li>
       <li><a href="#moments">Moments</a></li>
     </ul>
     <div class="tools">
@@ -852,7 +853,7 @@
   <a href="#experience">Work</a>
   <a href="#projects">Projects</a>
   <a href="#orchestrate">Hackathons</a>
-  <a href="#certifications">Credentials</a>
+  <a href="#certifications">Certificates</a>
   <a href="#moments">Photos</a>
   <a href="#beyond">Archery</a>
   <a href="#contact">Contact</a>
@@ -893,6 +894,7 @@
       <a href="#experience">ACM-W Technical Lead</a>
     </div>
     <div class="logos" aria-label="Organisations I've been certified, ranked or hired by">
+      <span class="lbl">Certified by, ranked on, built for</span>
       <span class="logo" style="--brand:#FF9900;--m:url(img/logos/amazonwebservices.svg)" title="AWS"></span>
       <span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)" title="HackerRank"></span>
       <span class="logo" style="--brand:#EE0000;--m:url(img/logos/redhat.svg)" title="Red Hat"></span>
@@ -1066,39 +1068,39 @@
   </section>
 
   <section class="block" id="certifications">
-    <div class="head"><div><span class="kicker">Credentials</span><h2>Checked by big names</h2></div><p>Tap any tile to see the certificate.</p></div>
+    <div class="head"><div><span class="kicker">Certificates</span><h2>Certified by big names</h2></div><p>Official certificates from AWS, SAP, Red Hat, HackerRank and Citi. Tap a tile to see it.</p></div>
     <div class="certs tiles">
       <div class="cert">
         <div class="lg"><span class="logo" style="--brand:#FF9900;--m:url(img/logos/amazonwebservices.svg)"></span></div>
-        <div><h3>AWS Certified AI Practitioner</h3><div class="sub">Amazon Web Services · 2026</div></div>
+        <div><span class="ctype">Certificate</span><h3>AWS Certified AI Practitioner</h3><div class="sub">Amazon Web Services · 2026</div></div>
       </div>
       <button class="cert" data-open="img/sap-cert.jpg" data-cap="SAP Certified Back-End Developer, ABAP Cloud" data-pdf="docs/sap-abap-cloud.pdf">
         <div class="lg"><span class="logo" style="--brand:#0FAAFF;--m:url(img/logos/sap.svg)"></span></div>
-        <div><h3>SAP Back-End Developer</h3><div class="sub">ABAP Cloud · 2026</div></div>
+        <div><span class="ctype">Certificate</span><h3>SAP Back-End Developer</h3><div class="sub">ABAP Cloud · 2026</div></div>
       </button>
       <button class="cert" data-open="img/orch-aug.jpg" data-cap="HackerRank Orchestrate, August 2026: final rank #27 of 1,983" data-pdf="docs/hackerrank-orchestrate-august-2026.pdf">
         <div class="lg"><span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span></div>
-        <div><h3>HackerRank Orchestrate</h3><div class="sub"><b>#27</b> of 1,983</div></div>
+        <div><span class="ctype">Certificate · rank</span><h3>HackerRank Orchestrate</h3><div class="sub"><b>#27</b> of 1,983</div></div>
       </button>
       <a class="cert" href="#orchestrate">
         <div class="lg"><span class="logo" style="--brand:#2EC866;--m:url(img/logos/hackerrank.svg)"></span></div>
-        <div><h3>HackerRank Earn</h3><div class="sub">Invite-only network</div></div>
+        <div><span class="ctype">Invitation</span><h3>HackerRank Earn</h3><div class="sub">Invite-only network</div></div>
       </a>
       <button class="cert" data-open="img/citi-cert.jpg" data-cap="Citi Bridge Program 2026: Certificate of Recognition" data-pdf="docs/citi-bridge-2026.pdf">
         <div class="lg"><span class="citi">citi</span></div>
-        <div><h3>Citi Bridge 2026</h3><div class="sub"><b>Top 5%</b> of 1,200+</div></div>
+        <div><span class="ctype">Certificate</span><h3>Citi Bridge 2026</h3><div class="sub"><b>Top 5%</b> of 1,200+</div></div>
       </button>
       <button class="cert" data-open="img/redhat.jpg" data-cap="Red Hat RH294: Enterprise Linux Automation with Ansible" data-pdf="docs/redhat-rh294.pdf">
         <div class="lg"><span class="logo" style="--brand:#EE0000;--m:url(img/logos/redhat.svg)"></span></div>
-        <div><h3>Red Hat RH294</h3><div class="sub">Linux automation</div></div>
+        <div><span class="ctype">Certificate</span><h3>Red Hat RH294</h3><div class="sub">Linux automation</div></div>
       </button>
       <div class="cert">
         <div class="lg"><img class="gs" src="img/logos/gssoc.png" alt=""></div>
-        <div><h3>GSSoC 2025</h3><div class="sub">Open-source contributor</div></div>
+        <div><span class="ctype">Contributor</span><h3>GSSoC 2025</h3><div class="sub">Open-source contributor</div></div>
       </div>
       <div class="cert">
         <div class="lg"><span class="logo" style="--brand:var(--ink);--m:url(img/logos/openai.svg)"></span></div>
-        <div><h3>OpenAI × NxtWave</h3><div class="sub">State finalist</div></div>
+        <div><span class="ctype">Award</span><h3>OpenAI × NxtWave</h3><div class="sub">State finalist</div></div>
       </div>
     </div>
     <p class="verify">Verify on Credly: <a href="https://www.credly.com/badges/5ac8fff1-58ba-4f33-850e-f3fe3a7831a2" target="_blank" rel="noopener">SAP</a> · <a href="https://www.credly.com/badges/b6c45fd1-ceac-4b50-8b31-f790a4ef6ed2" target="_blank" rel="noopener">Red Hat</a></p>
