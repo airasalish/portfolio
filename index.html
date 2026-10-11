@@ -816,6 +816,7 @@
   @media (max-width: 980px) { .certs.tiles { grid-template-columns: repeat(2, 1fr); } .certs.tiles .cert:not(:nth-child(4n+1)) { padding-left: 0; border-left: 0; } .certs.tiles .cert:nth-child(2n) { padding-left: 16px; border-left: 1px solid var(--line); } }
   @media (max-width: 760px) { .stats a + a { padding-left: 16px; } .stats a:nth-child(3) { border-left: 0; padding-left: 0; } .stats a:nth-child(n+3) { border-top: 1px solid var(--line); } .tldr li { font-size: 16.5px; } }
   .receipts { counter-increment: sec; }
+  .proj p.stack { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -984,8 +985,9 @@
         <div class="body">
           <span class="eyebrow">Razorpay AI Buildathon · 2026</span>
           <h3>WARRANT</h3>
-          <p>AI that decides chargeback disputes, and can show its working.</p>
-          <div class="foot"><span class="metric"><b>0</b> wrong committed calls · <b>100%</b> vs attacks</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/warrant-full.mp4?v=3" data-title="WARRANT, 5-minute pitch">▶ Pitch</button><a class="btn sm" href="https://github.com/airasalish/warrant---Razorpay-2026" target="_blank" rel="noopener">Code</a></span></div>
+          <p>Chargebacks cost merchants real money. WARRANT is an AI agent that reviews each dispute and decides it, with every risk check in plain code so the call can be audited. Tested against prompt-injection attacks, and scored on unseen data.</p>
+          <p class="stack">Python · LLM agents · Evaluation</p>
+          <div class="foot"><span class="metric"><b>0</b> wrong committed calls · <b>100%</b> attack defence</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/warrant-full.mp4?v=3" data-title="WARRANT, 5-minute pitch">▶ Pitch</button><a class="btn sm" href="https://github.com/airasalish/warrant---Razorpay-2026" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
       <article class="proj" id="p-drift">
@@ -997,7 +999,8 @@
         <div class="body">
           <span class="eyebrow">Code, by Groww · 2026</span>
           <h3>DRIFT</h3>
-          <p>A stock watchlist that tells you what changed, and why.</p>
+          <p>Investors don't need more charts, they need to know what changed. DRIFT flags it with five transparent rules that each show their evidence, plus an optional AI summary. Deployed end to end and in use.</p>
+          <p class="stack">Python · PostgreSQL · React</p>
           <div class="foot"><span class="metric"><b>121</b> tests · <b>191</b> commits · live</span><span class="links"><button class="btn sm primary" data-play="yt" data-yt="l2lPWKitNJ0" data-title="DRIFT, 8-minute pitch">▶ Pitch</button><a class="btn sm" href="https://frontend-dusky-omega-11.vercel.app" target="_blank" rel="noopener">Live</a><a class="btn sm" href="https://github.com/airasalish/drift" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
@@ -1010,7 +1013,8 @@
         <div class="body">
           <span class="eyebrow">Xeno internship challenge · 2026</span>
           <h3>AIRA</h3>
-          <p>One sentence in, a full marketing campaign out. In under 30 seconds.</p>
+          <p>Type a goal like "win back customers who stopped ordering." AIRA picks the audience, writes three message variants, chooses WhatsApp or email and tracks delivery live, in under 30 seconds.</p>
+          <p class="stack">Next.js · Llama 3.3 on Groq · Node</p>
           <div class="foot"><span class="metric"><b>35</b> bugs found and fixed · live</span><span class="links"><button class="btn sm primary" data-play="mp4" data-src-full="vid/aira-full.mp4" data-title="AIRA, 5-minute walkthrough">▶ Demo</button><a class="btn sm" href="https://aira-ecru.vercel.app" target="_blank" rel="noopener">Live</a><a class="btn sm" href="https://github.com/airasalish/AIRA-AI-Reach-Agent" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
@@ -1019,8 +1023,9 @@
         <div class="body">
           <span class="eyebrow">Team project on AWS · 2026</span>
           <h3>Log-Seismo</h3>
-          <p>Spots error spikes in server logs and alerts the team, live.</p>
-          <div class="foot"><span class="metric">Team of 5 · I wired it together</span><span class="links"><a class="btn sm" href="https://github.com/gershomrichardbruno/Log-Seismo" target="_blank" rel="noopener">Code</a></span></div>
+          <p>Outages start as quiet error spikes. Log-Seismo learns a service's normal error rate and raises a graded alert through AWS the moment it drifts. Built by a team of five; I owned the integration.</p>
+          <p class="stack">FastAPI · React · AWS CloudWatch &amp; SNS</p>
+          <div class="foot"><span class="metric">Detection lag measured on every alert</span><span class="links"><a class="btn sm" href="https://github.com/gershomrichardbruno/Log-Seismo" target="_blank" rel="noopener">Code</a></span></div>
         </div>
       </article>
     </div>
